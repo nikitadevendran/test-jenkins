@@ -13,9 +13,10 @@ pipeline {
                     // Create a backup of the MySQL database and gzip it
                     withCredentials([usernamePassword(credentialsId: 'rds', usernameVariable: 'DB_USER', passwordVariable: 'DB_PASSWORD')]) {
                         sh '''
-                            set -e
-                            mysqldump -h ${DB_HOST} -u ${DB_USER} -p${DB_PASSWORD} ${DB_NAME} | gzip > ${GZ_FILE_NAME}
+                                set -e
+                                 mysqldump --single-transaction -h ${DB_HOST} -u ${DB_USER} -p${DB_PASSWORD} ${DB_NAME} | gzip > ${GZ_FILE_NAME}
                         '''
+
                     }
                 }
             }
