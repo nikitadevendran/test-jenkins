@@ -32,7 +32,7 @@ pipeline {
                     script {
                         sh '''
                             set -e
-                            aws s3 cp ${GZ_FILE_NAME} s3://${AWS_BUCKET}/
+                            aws s3 cp ${GZ_FILE_NAME} s3://${AWS_BUCKET}/ --region eu-north-1
                         '''
                     }
                 }
