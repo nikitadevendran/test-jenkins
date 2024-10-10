@@ -14,7 +14,7 @@ pipeline {
                 script {
                     // Create a backup of the MySQL database and gzip it
                     withCredentials([usernamePassword(credentialsId: 'rds', usernameVariable: 'DB_USER', passwordVariable: 'DB_PASSWORD')]) {
-                        sh "mysqldump -h ${env.DB_HOST} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} | gzip > ${env.GZ_FILE_NAME}"
+                        sh 'mysqldump -h ${env.DB_HOST} -u ${env.DB_USER} -p${env.DB_PASSWORD} ${env.DB_NAME} | gzip > ${env.GZ_FILE_NAME}'
                     }
                 }
             }
